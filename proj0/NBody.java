@@ -19,6 +19,8 @@ public class NBody {
         /*Creating the animation*/
         StdDraw.enableDoubleBuffering();
         double time = 0;
+        //Play the BGM
+        StdAudio.play("audio/2001.mid");
         while (time <= T) {
             double[] xForces = new double[planets.length];
             double[] yForces = new double[planets.length];
