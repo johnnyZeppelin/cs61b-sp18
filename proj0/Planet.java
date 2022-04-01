@@ -140,4 +140,11 @@ public class Planet {
         xxPos += dt * xxVel;
         yyPos += dt * yyVel;
     }
+
+    /**
+     * To draw this planet
+     */
+    public void draw() {
+        StdDraw.picture(xxPos, yyPos, "images/" + imgFileName);
+    }
 }
