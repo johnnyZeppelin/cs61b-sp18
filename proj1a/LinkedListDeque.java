@@ -70,7 +70,6 @@ public class LinkedListDeque<T> {
      * @param other the object to create a deep copy of
      */
     public LinkedListDeque(LinkedListDeque other) {
-        /* TO BE IMPLEMENTED */
         sentinelFore = new TNode();
         sentinelHind = new TNode();
         sentinelFore.next = sentinelHind;
