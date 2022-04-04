@@ -227,7 +227,7 @@ public class LinkedListDeque<T> {
      * @return the pointer in the target position
      */
     private TNode pointerAt(int index) {
-        /* but the getRecursive has already make sure index can only be from 0 to size - 1 here.
+        /* But the getRecursive has already make sure index can only be from 0 to size - 1 here.
         if (index < 0 || index >= size) {
             return null;
         }*/
