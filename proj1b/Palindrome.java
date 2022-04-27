@@ -38,4 +38,34 @@ public class Palindrome {
         Deque<Character> deque = wordToDeque(word);
         return isPalindromeHelper(deque);
     }
+
+
+    /**
+     * To check if the deque is a specific palindrome recursively.
+     * @param deque the word to check in deque type
+     * @param cc the CharacterComparator to check by how many off to check the palindrome
+     * @return true if deque meets the rule;
+     * false otherwise
+     */
+    private boolean isPalindromeHelper(Deque<Character> deque, CharacterComparator cc) {
+        if (deque.size() == 1 || deque.isEmpty()) {
+            return true;
+        } else if (cc.equalChars(deque.removeFirst(), deque.removeLast())) {
+            return isPalindromeHelper(deque, cc);
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Checks if the given word is a palindrome of the given CharacterComparator.
+     * @param word the given word to check
+     * @param cc the given CharacterComparator
+     * @return true if the word meets the rule;
+     * false otherwise
+     */
+    public boolean isPalindrome(String word, CharacterComparator cc) {
+        Deque<Character> deque = wordToDeque(word);
+        return isPalindromeHelper(deque, cc);
+    }
 }
