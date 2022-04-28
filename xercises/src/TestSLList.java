@@ -55,4 +55,18 @@ public class TestSLList {
         assertTrue(stringSLList.get(1).equals("Beta"));
         assertFalse(stringSLList.get(0).equals("Alpha"));
     }
+
+    @Test
+    public void testAList() {
+        AList<String> aList = new AList<String>();
+        aList.addFirst("Ar");
+        aList.addFirst("Bee");
+        aList.addFirst("Ceed");
+        aList.addFirst("Delta");
+        assertEquals("Delta", aList.removeFirst());
+        assertEquals(3, aList.size());
+        assertFalse(aList.isEmpty());
+        assertEquals("Ceed", aList.get(2));
+        aList.printList();
+    }
 }

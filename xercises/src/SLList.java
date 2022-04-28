@@ -15,6 +15,16 @@ public class SLList<T> {
         size = 0;
     }
 
+    public SLList(SLList<T> other) {
+        front = new TNode(null, null);
+        size = 0;
+        TNode p = other.front;
+        while (p.next != null) {
+            p = p.next;
+            addFirst(p.item);
+        }
+    }
+
     public void addFirst(T item) {
         front.next = new TNode(item, front.next);
         size++;
@@ -22,8 +32,8 @@ public class SLList<T> {
     public T removeFirst() {
         if (size == 0) return null;
         T res = front.next.item;
+        front.next = (size == 1 ? null : front.next.next);
         size--;
-        front.next = size == 1 ? null : front.next.next;
         return res;
     }
     public int size() {
