@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.*;
+
 public class WordUtils {
     public static String longest(SLList<String> stringSLList) {
         SLList<String> p = new SLList(stringSLList);
