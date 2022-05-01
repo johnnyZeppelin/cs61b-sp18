@@ -1,4 +1,5 @@
-public class SLList<T> {
+package LinkedList;
+public class SLList<T> implements List61B {
     private class TNode {
         T item;
         TNode next;
@@ -21,14 +22,27 @@ public class SLList<T> {
         TNode p = other.front;
         while (p.next != null) {
             p = p.next;
-            addFirst(p.item);
+            addLast(p.item);
         }
     }
 
-    public void addFirst(T item) {
-        front.next = new TNode(item, front.next);
+    @Override
+    public void addFirst(Object item) {
+        front.next = new TNode((T) item, front.next);
         size++;
     }
+
+    @Override
+    public void addLast(Object item) {
+        TNode p = front;
+        while (p.next != null) {
+            p = p.next;
+        }
+        p.next = new TNode((T) item, null);
+        size++;
+    }
+
+    @Override
     public T removeFirst() {
         if (size == 0) return null;
         T res = front.next.item;
@@ -36,12 +50,23 @@ public class SLList<T> {
         size--;
         return res;
     }
-    public int size() {
-        return size;
+
+    @Override
+    public T removeLast() {
+        if (size == 0) return null;
+        TNode p = front;
+        if (size > 1) {
+            while (p.next.next != null) {
+                p = p.next;
+            }
+        }
+        T res = p.next.item;
+        p.next = null;
+        size--;
+        return res;
     }
-    public boolean isEmpty() {
-        return size == 0;
-    }
+
+    @Override
     public void printList() {
         TNode p = front;
         while (p.next != null) {
@@ -49,6 +74,8 @@ public class SLList<T> {
             System.out.println(p.item);
         }
     }
+
+    @Override
     public T get(int index) {
         if (index < 0 || index > size - 1) return null;
         TNode p = front;
@@ -56,5 +83,10 @@ public class SLList<T> {
             p = p.next;
         }
         return p.item;
+    }
+
+    @Override
+    public int size() {
+        return size;
     }
 }

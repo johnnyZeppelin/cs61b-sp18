@@ -1,4 +1,5 @@
-public class AList<T> {
+package LinkedList;
+public class AList<T> implements List61B {
     private T[] arr;
     private int size;
 
@@ -6,6 +7,14 @@ public class AList<T> {
         arr = (T[]) new Object[8];
         size = 0;
     }
+    public AList(AList other) {
+        arr = (T[]) new Object[other.arr.length];
+        size = other.size;
+        for (int i = 0; i < size; ++i) {
+            arr[i] = (T) other.arr[i];
+        }
+    }
+
     private void extendArr() {
         T[] newArr = (T[]) new Object[arr.length * 2];
         for (int i = 0; i < size; ++i) {
@@ -20,27 +29,55 @@ public class AList<T> {
         }
         arr = newArr;
     }
-    public void addFirst(T item) {
+
+    @Override
+    public void addFirst(Object item) {
         if (size >= arr.length) extendArr();
-        arr[size++] = item;
+        for (int i = size; i > 0; --i) {
+            arr[i] = arr[i - 1];
+        }
+        arr[0] = (T) item;
+        size++;
     }
+
+    @Override
+    public void addLast(Object item) {
+        if (size >= arr.length) extendArr();
+        arr[size++] = (T) item;
+    }
+
+    @Override
     public T removeFirst() {
+        if (size == 0) return null;
+        T res = arr[0];
+        for (int i = 0; i < size - 1; ++i) {
+            arr[i] = arr[i + 1];
+        }
+        size--;
+        return res;
+    }
+
+    @Override
+    public T removeLast() {
         if (size == 0) return null;
         if (size <= arr.length * 0.25) halfArr();
         return arr[--size];
     }
-    public boolean isEmpty() {
-        return size == 0;
-    }
-    public int size() {
-        return size;
-    }
+
+    @Override
     public void printList() {
         for (int i = 0; i < size; ++i) {
             System.out.println(arr[i]);
         }
     }
+
+    @Override
     public T get(int index) {
         return index < 0 || index >= size ? null : arr[index];
+    }
+
+    @Override
+    public int size() {
+        return size;
     }
 }

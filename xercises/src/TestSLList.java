@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
+import LinkedList.*;
 
 public class TestSLList {
     SLList<String> stringSLList = new SLList<String>();
@@ -62,11 +63,44 @@ public class TestSLList {
         aList.addFirst("Ar");
         aList.addFirst("Bee");
         aList.addFirst("Ceed");
+        aList.addLast("Farm");
         aList.addFirst("Delta");
+        aList.addLast("Epsilon");
+
         assertEquals("Delta", aList.removeFirst());
-        assertEquals(3, aList.size());
+        assertEquals(5, aList.size());//5
         assertFalse(aList.isEmpty());
-        assertEquals("Ceed", aList.get(2));
-        aList.printList();
+        assertEquals("Ceed", aList.get(0));//0
+        assertEquals("Epsilon", aList.removeLast());
+        assertEquals(4, aList.size());
+        aList.printList();//cbaf
+    }
+
+    @Test
+    public void testRotatingSLList() {
+        RotatingSLList<java.lang.Integer> aka = new RotatingSLList<>();
+        aka.addLast(5);
+        aka.addLast(9);
+        aka.addLast(15);
+        aka.addLast(22);
+        aka.rotateRight();
+        aka.printList();
+    }
+
+    @Test
+    public void testWordUtils() {
+        SLList<String> a = new SLList<String>();
+        a.addFirst("asd");
+        a.addFirst("asdfghjj");
+        a.addFirst("asdfghjk");
+        a.addFirst("asdfgh");
+        assertEquals("asdfghjk", WordUtils.longest(a));
+
+        AList<String> b = new AList<String>();
+        b.addLast("asd");
+        b.addFirst("asdfghjj");
+        b.addLast("asdfghjk");
+        b.addFirst("asdfgh");
+        assertEquals("asdfghjj", WordUtils.longest(b));
     }
 }

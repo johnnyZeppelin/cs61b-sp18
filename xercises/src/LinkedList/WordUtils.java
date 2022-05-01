@@ -1,5 +1,4 @@
-import org.jetbrains.annotations.*;
-
+package LinkedList;
 public class WordUtils {
     public static String longest(SLList<String> stringSLList) {
         SLList<String> p = new SLList(stringSLList);
@@ -20,21 +19,5 @@ public class WordUtils {
         }
 
         return res;
-    }
-
-    public static void main(String[] args) {
-        SLList<String> a = new SLList<String>();
-        a.addFirst("asd");
-        a.addFirst("asdfghjj");
-        a.addFirst("asdfghjk");
-        a.addFirst("asdfgh");
-        System.out.println(longest(a));
-
-        AList<String> b = new AList<String>();
-        b.addFirst("asd");
-        b.addFirst("asdfghjj");
-        b.addFirst("asdfghjk");
-        b.addFirst("asdfgh");
-        System.out.println(longest(b));
     }
 }

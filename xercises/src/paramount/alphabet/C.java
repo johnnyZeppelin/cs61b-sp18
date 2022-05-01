@@ -1,4 +1,4 @@
-package paramount;
+package paramount.alphabet;
 
 public class C extends B {
     public int y = x + 1;

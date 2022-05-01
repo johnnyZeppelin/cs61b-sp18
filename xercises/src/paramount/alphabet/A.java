@@ -1,4 +1,4 @@
-package paramount;
+package paramount.alphabet;
 
 public class A {
     protected void m00() {

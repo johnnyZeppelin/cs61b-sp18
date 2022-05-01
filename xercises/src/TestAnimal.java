@@ -1,4 +1,5 @@
 import org.junit.Test;
+import paramount.animals.*;
 
 public class TestAnimal {
     @Test
@@ -23,10 +24,5 @@ public class TestAnimal {
         d = (Dog) a;
         a.greet();
         d.greet();
-
-        paramount.B bbc = (paramount.B) new paramount.C();
-        bbc.update();
-        bbc.m2();
-        System.out.println(bbc.x + ((paramount.C) bbc).y);
     }
 }
