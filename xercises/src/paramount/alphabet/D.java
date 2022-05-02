@@ -90,5 +90,9 @@ public class D {
         A zz = zz2;
         C zz1 = (C) zz;
         zz1.jusam();
+
+        A[] adfc = (A[]) new C[1];
+        adfc[0] = zz2;
+        adfc[0].m2();
     }
 }
