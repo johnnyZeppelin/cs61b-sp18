@@ -2,6 +2,7 @@ package Miscellany.Plaza;
 
 import edu.princeton.cs.algs4.*;
 
+import java.lang.reflect.Method;
 import java.util.*;
 
 public class Exercise0 {
@@ -71,5 +72,15 @@ public class Exercise0 {
         //System.out.println(getWords(file).get(3));
        // System.out.println(countUniqueWords(getWords(file)));
         System.out.println(collectWordCount(getWords(file1), getWords(file)));
+
+        Method[] methods = Collection.class.getMethods();
+        for (Method method : methods) {
+            System.out.println(method);
+        }
+        Class aclass = Collection.class;
+        Class[] interfaces = aclass.getInterfaces();
+        for (Class c : interfaces) {
+            System.out.println(c.getName());
+        }
     }
 }
