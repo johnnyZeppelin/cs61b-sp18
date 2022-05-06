@@ -1,4 +1,4 @@
-package LinkedList;
+package DataStructure61B.List61B;
 public class SLList<T> implements List61B {
     private class TNode {
         T item;
@@ -67,12 +67,13 @@ public class SLList<T> implements List61B {
     }
 
     @Override
-    public void printList() {
+    public boolean printList() {
         TNode p = front;
         while (p.next != null) {
             p = p.next;
             System.out.println(p.item);
         }
+        return true;
     }
 
     @Override

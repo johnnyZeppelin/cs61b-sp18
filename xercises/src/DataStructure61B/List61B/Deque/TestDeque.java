@@ -1,5 +1,7 @@
-import LinkedList.Deque.ArrayDeque;
-import LinkedList.Deque.LinkedListDeque;
+package DataStructure61B.List61B.Deque;
+
+import DataStructure61B.List61B.Deque.ArrayDeque;
+import DataStructure61B.List61B.Deque.LinkedListDeque;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

@@ -1,4 +1,4 @@
-package LinkedList;
+package DataStructure61B.List61B;
 public class AList<T> implements List61B {
     private T[] arr;
     private int size;
@@ -65,10 +65,11 @@ public class AList<T> implements List61B {
     }
 
     @Override
-    public void printList() {
+    public boolean printList() {
         for (int i = 0; i < size; ++i) {
             System.out.println(arr[i]);
         }
+        return true;
     }
 
     @Override

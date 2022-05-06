@@ -1,4 +1,4 @@
-package LinkedList;
+package DataStructure61B.List61B;
 
 public class VengefulSLList<T> extends SLList<T> {
     private SLList<T> deletedItems;

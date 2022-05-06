@@ -1,6 +1,6 @@
-package LinkedList.Deque;
+package DataStructure61B.List61B.Deque;
 
-public class ArrayDeque<T> implements LinkedList.List61B<T> {
+public class ArrayDeque<T> implements DataStructure61B.List61B.List61B<T> {
     private T[] arr;
     private int front, back, size;
 
@@ -60,10 +60,11 @@ public class ArrayDeque<T> implements LinkedList.List61B<T> {
     }
 
     @Override
-    public void printList() {
+    public boolean printList() {
         for (int i = front; i < back; ++i) {
             System.out.println(arr[ri(i, arr.length)]);
         }
+        return true;
     }
 
     @Override

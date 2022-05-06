@@ -1,6 +1,8 @@
+package DataStructure61B.List61B;
+
 import static org.junit.Assert.*;
 import org.junit.Test;
-import LinkedList.*;
+import DataStructure61B.List61B.*;
 
 public class TestSLList {
     SLList<String> stringSLList = new SLList<String>();

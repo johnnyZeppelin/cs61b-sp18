@@ -1,4 +1,4 @@
-package LinkedList;
+package DataStructure61B.List61B;
 public class WordUtils {
     public static String longest(SLList<String> stringSLList) {
         SLList<String> p = new SLList(stringSLList);

@@ -1,6 +1,6 @@
-package LinkedList.Deque;
+package DataStructure61B.List61B.Deque;
 
-public class LinkedListDeque<T> implements LinkedList.List61B<T> {
+public class LinkedListDeque<T> implements DataStructure61B.List61B.List61B<T> {
     private class DTNode {
         DTNode prev;
         T item;
@@ -68,12 +68,13 @@ public class LinkedListDeque<T> implements LinkedList.List61B<T> {
     }
 
     @Override
-    public void printList() {
+    public boolean printList() {
         DTNode helper = front;
         for (int i = 0; i < size; ++i) {
             helper = helper.next;
             System.out.println(helper.item);
         }
+        return true;
     }
 
     @Override
