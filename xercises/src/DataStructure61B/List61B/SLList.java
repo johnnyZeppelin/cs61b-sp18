@@ -1,13 +1,21 @@
 package DataStructure61B.List61B;
-public class SLList<T> implements List61B {
+
+import org.jetbrains.annotations.NotNull;
+import sun.font.CreatedFontTracker;
+
+import java.util.Iterator;
+
+public class SLList<T> implements List61B, Iterable<T> {
     private class TNode {
         T item;
         TNode next;
+
         public TNode(T i, TNode n) {
             item = i;
             next = n;
         }
     }
+
     private TNode front;
     private int size;
 
@@ -89,5 +97,62 @@ public class SLList<T> implements List61B {
     @Override
     public int size() {
         return size;
+    }
+
+    private class SLListIterator implements Iterator<T> {
+        private TNode wizPos = front;
+
+        @Override
+        public boolean hasNext() {
+            return wizPos.next != null;
+        }
+
+        @Override
+        public T next() {
+            wizPos = wizPos.next;
+            return wizPos.item;
+        }
+    }
+
+    @NotNull
+    @Override
+    public Iterator<T> iterator() {
+        return new SLListIterator();
+    }
+
+    public static <T> SLList<T> of(T... load) {
+        SLList returnList = new SLList();
+        for (T i : load) {
+            returnList.addLast(i);
+        }
+        return returnList;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (obj == null) return false;
+        if (obj.getClass() != getClass()) return false;
+
+        SLList<T> o = (SLList<T>) obj;
+        if (o.size != size) return false;
+        for (int i = 0; i < size; ++i) {
+            if (!get(i).equals(o.get(i))) return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder reSB = new StringBuilder("(");
+        if (size != 0) {
+            TNode p;
+            for (p = front.next; p.next != null; p = p.next) {
+                reSB.append(p.item.toString());
+                reSB.append(", ");
+            }
+            reSB.append(p.item.toString());
+        }
+        return reSB.append(')').toString();
     }
 }

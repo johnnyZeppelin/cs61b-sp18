@@ -1,6 +1,11 @@
 package DataStructure61B.List61B.Deque;
 
-public class ArrayDeque<T> implements DataStructure61B.List61B.List61B<T> {
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Iterator;
+
+public class ArrayDeque<T> implements
+        DataStructure61B.List61B.List61B<T>, Iterable<T> {
     private T[] arr;
     private int front, back, size;
 
@@ -9,6 +14,7 @@ public class ArrayDeque<T> implements DataStructure61B.List61B.List61B<T> {
         front = back = 0;
         size = 0;
     }
+
     public ArrayDeque(ArrayDeque other) {
         arr = (T[]) new Object[other.arr.length];
         front = other.front;
@@ -19,7 +25,10 @@ public class ArrayDeque<T> implements DataStructure61B.List61B.List61B<T> {
         }
     }
 
-    private int ri(int i, int p) { return (i % p + p) % p; }
+    private int ri(int i, int p) {
+        return (i % p + p) % p;
+    }
+
     private void doubleArray() {
         T[] newArr = (T[]) new Object[2 * arr.length];
         for (int i = front; i < back; ++i) {
@@ -27,6 +36,7 @@ public class ArrayDeque<T> implements DataStructure61B.List61B.List61B<T> {
         }
         arr = newArr;
     }
+
     private void halfArray() {
         T[] newArr = (T[]) new Object[arr.length / 2];
         for (int i = front; i < back; ++i) {
@@ -49,12 +59,14 @@ public class ArrayDeque<T> implements DataStructure61B.List61B.List61B<T> {
 
     @Override
     public T removeFirst() {
+        if (size == 0) return null;
         if (--size < 0.25 * arr.length) halfArray();
         return arr[ri(front++, arr.length)];
     }
 
     @Override
     public T removeLast() {
+        if (size == 0) return null;
         if (--size < 0.25 * arr.length) halfArray();
         return arr[ri(--back, arr.length)];
     }
@@ -76,5 +88,61 @@ public class ArrayDeque<T> implements DataStructure61B.List61B.List61B<T> {
     @Override
     public int size() {
         return size;
+    }
+
+    private class ArrayDequeIterator implements Iterator<T> {
+        private transient int wizPos;
+
+        public ArrayDequeIterator() {
+            wizPos = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return wizPos < size;
+        }
+
+        @Override
+        public T next() {
+            return arr[ri(front + wizPos++, arr.length)];
+        }
+    }
+
+    @NotNull
+    @Override
+    public Iterator<T> iterator() {
+        return new ArrayDequeIterator();
+    }
+
+    public static <T> ArrayDeque<T> of(T... load) {
+        ArrayDeque<T> arrayDeque = new ArrayDeque<>();
+        for (T i : load) arrayDeque.addLast(i);
+        return arrayDeque;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (obj == null) return false;
+        if (obj.getClass() != getClass()) return false;
+
+        ArrayDeque<T> o = (ArrayDeque<T>) obj;
+        for (int i = 0; i < size; ++i) {
+            if (!get(i).equals(o.get(i))) return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder rSB = new StringBuilder("(");
+        if (size != 0) {
+            for (int i = front; i < back - 1; ++i) {
+                rSB.append(arr[ri(i, arr.length)].toString());
+                rSB.append(", ");
+            }
+            rSB.append(arr[ri(back - 1, arr.length)].toString());
+        }
+        return rSB.append(')').toString();
     }
 }

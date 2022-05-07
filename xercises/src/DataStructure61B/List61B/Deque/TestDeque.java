@@ -1,7 +1,6 @@
 package DataStructure61B.List61B.Deque;
 
-import DataStructure61B.List61B.Deque.ArrayDeque;
-import DataStructure61B.List61B.Deque.LinkedListDeque;
+import DataStructure61B.List61B.List61B;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -61,5 +60,56 @@ public class TestDeque {
         assertFalse(l2.isEmpty());
         assertEquals(4, l2.size());
         assertTrue(167 == l2.get(1));
+    }
+
+    @Test
+    public void testLLD1() {
+        List61B<String> list61B = new LinkedListDeque<>();
+        System.out.println(list61B);
+        list61B.removeLast();
+        System.out.println(list61B.size());
+
+        String[] backup = new String[10];
+        for (int i = 0; i < 5; ++i) {
+            list61B.addFirst("This is " + ((Character) (char) (i + 60)));
+            list61B.addLast("This is " + ((Character) (char) (80 - i)));
+        }
+        assertEquals(10, list61B.size());
+
+        for (int i = 0; i < 10; ++i) backup[i] = list61B.get(i);
+
+        for (String s : (LinkedListDeque<String>) list61B) {
+            System.out.printf("%s\n", s);
+        }
+
+        //List61B<char[]> list61B1 = LinkedListDeque.of(backup);
+        List61B<String> list61B1 = LinkedListDeque.of(backup);
+
+        assertTrue(list61B1.equals(list61B));
+
+        System.out.println(list61B);
+    }
+
+    @Test
+    public void testAD1() {
+        List61B<Double> list61B = new ArrayDeque<>();
+        list61B.removeLast();
+        System.out.println(list61B);
+        Double[] backup = new Double[10];
+        for (int i = 0; i < 5; ++i) {
+            list61B.addFirst(i * 3.89);
+            list61B.addLast(93.4 / i);
+        }
+        assertEquals(10, list61B.size());
+
+        for (int i = 0; i < 10; ++i) backup[i] = list61B.get(i);
+
+        for (double d : (ArrayDeque<Double>) list61B) System.out.printf("%fl\n", d);
+
+        List61B<Double> list61B1 = ArrayDeque.of(backup);
+
+        assertTrue(list61B.equals(list61B1));
+
+        System.out.println(list61B1);
     }
 }
