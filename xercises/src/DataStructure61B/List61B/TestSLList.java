@@ -1,8 +1,9 @@
 package DataStructure61B.List61B;
 
-import static org.junit.Assert.*;
+import javafx.util.Pair;
 import org.junit.Test;
-import DataStructure61B.List61B.*;
+
+import static org.junit.Assert.*;
 
 public class TestSLList {
     SLList<String> stringSLList = new SLList<String>();
@@ -60,25 +61,6 @@ public class TestSLList {
     }
 
     @Test
-    public void testAList() {
-        AList<String> aList = new AList<String>();
-        aList.addFirst("Ar");
-        aList.addFirst("Bee");
-        aList.addFirst("Ceed");
-        aList.addLast("Farm");
-        aList.addFirst("Delta");
-        aList.addLast("Epsilon");
-
-        assertEquals("Delta", aList.removeFirst());
-        assertEquals(5, aList.size());//5
-        assertFalse(aList.isEmpty());
-        assertEquals("Ceed", aList.get(0));//0
-        assertEquals("Epsilon", aList.removeLast());
-        assertEquals(4, aList.size());
-        aList.printList();//cbaf
-    }
-
-    @Test
     public void testRotatingSLList() {
         RotatingSLList<java.lang.Integer> aka = new RotatingSLList<>();
         aka.addLast(5);
@@ -98,11 +80,37 @@ public class TestSLList {
         a.addFirst("asdfgh");
         assertEquals("asdfghjk", WordUtils.longest(a));
 
+        for (String s : a) {
+            System.out.println(s);
+        }
+
         AList<String> b = new AList<String>();
         b.addLast("asd");
         b.addFirst("asdfghjj");
         b.addLast("asdfghjk");
         b.addFirst("asdfgh");
         assertEquals("asdfghjj", WordUtils.longest(b));
+    }
+
+    @Test
+    public void testToStrEqlOf() {
+        List61B<Pair<String, Double>> list61B = new SLList<>();
+        Pair<String, Double>[] backup = new Pair[10];
+        for (int i = 0; i < 10; ++i) {
+            list61B.addLast(new Pair<>("Hello: ", i + 1.2));
+            backup[i] = new Pair<>("Hello: ", i + 1.2);
+        }
+
+        List61B<Pair<String, Double>> list61B1 = SLList.of(backup);
+        assertTrue(list61B1.equals(list61B));
+        System.out.println(list61B1);
+    }
+
+    @Test
+    public void testSpecial() {
+        List61B<String> list61B = new SLList<>();
+        System.out.println(list61B);
+        list61B.removeLast();list61B.removeLast();
+        System.out.println(list61B.size());
     }
 }
