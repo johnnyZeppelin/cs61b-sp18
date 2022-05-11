@@ -1,3 +1,5 @@
+package paramount;
+
 import org.junit.Test;
 import paramount.animals.*;
 
