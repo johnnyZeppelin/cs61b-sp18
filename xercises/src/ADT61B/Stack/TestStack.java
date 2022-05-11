@@ -5,6 +5,6 @@ import org.junit.Test;
 public class TestStack {
     @Test
     public void testExtensionStack() {
-        assert true;
+        assert false;
     }
 }
