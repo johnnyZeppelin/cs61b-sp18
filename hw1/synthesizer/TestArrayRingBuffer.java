@@ -29,6 +29,7 @@ public class TestArrayRingBuffer {
         }
         //arb.enqueue("lk");
         assertEquals(0, arb.peek());
+        for (Object object : arb) System.out.println(object);
     }
 
     /**

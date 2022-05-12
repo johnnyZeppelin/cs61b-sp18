@@ -2,6 +2,8 @@
 // package <package name>;
 package synthesizer;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Iterator;
 
 //TODO: Make sure to make this class and all of its methods public
@@ -69,4 +71,27 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     }
 
     // TODO: When you get to part 5, implement the needed code to support iteration.
+    private class abqIterator<T> implements Iterator<T> {
+        private transient int wizPos;
+
+        public abqIterator() {
+            wizPos = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return wizPos < fillCount;
+        }
+
+        @Override
+        public T next() {
+            return (T) rb[realIndex(first + wizPos++, capacity)];
+        }
+    }
+
+    @NotNull
+    @Override
+    public Iterator<T> iterator() {
+        return new abqIterator<>();
+    }
 }
