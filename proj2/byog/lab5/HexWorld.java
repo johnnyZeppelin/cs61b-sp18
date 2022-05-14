@@ -155,7 +155,7 @@ public class HexWorld {
 
 
         //addHexagon(3, new Position(5, 25), zaWorld, TETile.colorVariant(Tileset.FLOWER, 128, 128, 128, new Random()));
-        add19Hexagons(3, new Position(40, 40), zaWorld, getTile(new Random().nextInt(10), true), true, true, true);
+        add19Hexagons(6, new Position(40, 40), zaWorld, getTile(new Random().nextInt(10), true), true, true, true);
 
         ter.renderFrame(zaWorld);
     }
