@@ -63,6 +63,8 @@ public class MemoryGame {
         StdDraw.setPenColor(new Color(255, 160, 32));
         StdDraw.text(width / 2, height / 2, s);
         //StdDraw.enableDoubleBuffering(); // has been enabled in the constructor
+
+        //TODO: If game is not over, display relevant game information at the top of the screen
         StdDraw.setFont(new Font("Monaco", Font.CENTER_BASELINE, 23));
         StdDraw.text(width / 8, height * 0.95, "Round: " + round);
         if (!gameOver) {
@@ -72,9 +74,8 @@ public class MemoryGame {
             StdDraw.text(width * 5 / 6, height * 0.95, ENCOURAGEMENT[new Random().nextInt(round > 10 ? 7 : 6)]);
         }
         StdDraw.line(0, height * 0.923, width, height * 0.923);
-        StdDraw.show();
 
-        //TODO: If game is not over, display relevant game information at the top of the screen
+        StdDraw.show();
     }
 
     public void flashSequence(String letters) {
@@ -106,6 +107,7 @@ public class MemoryGame {
                 ++i;
                 try {
                     sb.append(StdDraw.nextKeyTyped());
+                    drawFrame(sb.toString());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -139,19 +141,23 @@ public class MemoryGame {
             if (!target.equals(attempt)) {
                 try {
                     Thread.sleep(1000);
+                    drawFrame("Game Over! You made it to round: " + round);
+                    Thread.sleep(3000);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                drawFrame("Game Over! You made it to round: " + round);
                 gameOver = true;
             } else {
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(1000);
+                    drawFrame(ENCOURAGEMENT[new Random().nextInt(round > 10 ? 7 : 6)]);
+                    Thread.sleep(1000);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }
+        System.exit(0);
     }
 
 }
