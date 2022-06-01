@@ -14,7 +14,7 @@ public class UnionFind {
     /* Throws an exception if v1 is not a valid index. */
     private void validate(int vertex) {
         // TODO
-        if (vertex >= id.length)
+        if (vertex >= id.length || vertex < 0)
             throw new IllegalArgumentException("not a valid index");
     }
 
