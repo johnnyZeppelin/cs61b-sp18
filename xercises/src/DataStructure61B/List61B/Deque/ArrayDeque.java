@@ -74,7 +74,8 @@ public class ArrayDeque<T> implements
     @Override
     public boolean printList() {
         for (int i = front; i < back; ++i) {
-            System.out.println(arr[ri(i, arr.length)]);
+            //System.out.println(arr[ri(i, arr.length)]);
+            System.out.printf("%s\t", arr[ri(i, arr.length)].toString());
         }
         return true;
     }
