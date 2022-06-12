@@ -5,7 +5,7 @@ import ADT61B.Stack.Stack;
 import DataStructure61B.List61B.Deque.ArrayDeque;
 import DataStructure61B.List61B.List61B;
 
-public class BST<E> implements Tree61B<E> {
+public class BST<E extends Comparable<E>> implements Tree61B<E> {
     private Entry<E> root;
     private int size;
 
@@ -24,10 +24,10 @@ public class BST<E> implements Tree61B<E> {
         if (contains(x)) return;
         Entry<E> p = root;
         Entry<E> pre = p;
-        boolean loadLeft = root.value.toString().compareTo(x.toString()) > 0;
+        boolean loadLeft = root.value.compareTo(x) > 0;
         while (p != null || p != null) {
             pre = p;
-            if (p.value.toString().compareTo(x.toString()) > 0) {
+            if (p.value.compareTo(x) > 0) {
                 p = p.leftChild;
                 if (p == null) break;
             } else {
@@ -47,10 +47,10 @@ public class BST<E> implements Tree61B<E> {
         if (!contains(x)) return null;
         Entry<E> p = root;
         while (p.leftChild != null || p.rightChild != null) {
-            if (root.value.toString().compareTo(x.toString()) > 0) {
+            if (root.value.compareTo(x) > 0) {
                 p = p.leftChild;
             } else if (
-                    root.value.toString().compareTo(x.toString()) < 0
+                    root.value.compareTo(x) < 0
             ) {
                 p = p.rightChild;
             } else {
@@ -66,10 +66,10 @@ public class BST<E> implements Tree61B<E> {
         Entry<E> p = root;
         boolean res = root.value.toString().equals(x.toString());
         while (p.leftChild != null || p.rightChild != null) {
-            if (root.value.toString().compareTo(x.toString()) > 0) {
+            if (root.value.compareTo(x) > 0) {
                 p = p.leftChild;
             } else if (
-                    root.value.toString().compareTo(x.toString()) < 0
+                    root.value.compareTo(x) < 0
             ) {
                 p = p.rightChild;
             } else {

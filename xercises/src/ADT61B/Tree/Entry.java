@@ -1,6 +1,6 @@
 package ADT61B.Tree;
 
-public class Entry<E> {
+public class Entry<E extends Comparable<E>> {
     E value;
     Entry<E> leftChild, rightChild;
 

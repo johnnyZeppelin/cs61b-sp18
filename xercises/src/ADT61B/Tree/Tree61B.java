@@ -1,6 +1,6 @@
 package ADT61B.Tree;
 
-public interface Tree61B<E> {
+public interface Tree61B<E extends Comparable<E>> {
     int size();
 
     default boolean isEmpty() {
