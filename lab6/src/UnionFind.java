@@ -49,6 +49,11 @@ public class UnionFind {
         // TODO
         if (connected(v1, v2)) return;
         int a = find(v1), b = find(v2);
+        if (id[a] > id[b]) {
+            int t = a;
+            a = b;
+            b = t;
+        }
         id[a] -= id[b];
         id[b] = a;
     }
