@@ -47,18 +47,10 @@ public class UnionFind {
        change the sets but may alter the internal structure of the data. */
     public void union(int v1, int v2) {
         // TODO
-        if (v1 == v2) return;
         if (connected(v1, v2)) return;
         int a = find(v1), b = find(v2);
-        if (sizeOf(v1) < sizeOf(v2)) {
-            id[b] += id[a];
-            for (int i = 0; i < id.length; ++i) if (id[i] == a) id[i] = b;
-            id[a] = b;
-        } else {
-            id[a] += id[b];
-            for (int i = 0; i < id.length; ++i) if (id[i] == b) id[i] = a;
-            id[b] = a;
-        }
+        id[a] -= id[b];
+        id[b] = a;
     }
 
     /* Returns the root of the set V belongs to. Path-compression is employed
