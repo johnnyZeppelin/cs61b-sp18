@@ -49,12 +49,12 @@ public class UnionFind {
         // TODO
         if (connected(v1, v2)) return;
         int a = find(v1), b = find(v2);
-        if (id[a] > id[b]) {
+        if (id[a] >= id[b]) {
             int t = a;
             a = b;
             b = t;
         }
-        id[a] -= id[b];
+        id[a] += id[b];
         id[b] = a;
     }
 
@@ -62,9 +62,8 @@ public class UnionFind {
        allowing for fast search-time. */
     public int find(int vertex) {
         // TODO
-        validate(vertex);
-        while (id[vertex] >= 0) vertex = id[vertex];
+        if (vertex > id.length) return -1;
+        if (id[vertex] >= 0) id[vertex] = find(id[vertex]);
         return vertex;
     }
-
 }
