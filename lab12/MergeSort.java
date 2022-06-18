@@ -63,4 +63,8 @@ public class MergeSort {
         // Your code here!
         return items;
     }
+
+    public static void main(String[] args) {
+
+    }
 }
