@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        /** Your code here. */
+        /* Your code here. **/
         /* 0
         Generator generator = new SineWaveGenerator(60);//440);
         GeneratorPlayer gp = new GeneratorPlayer(generator);
@@ -31,7 +31,7 @@ public class Main {
         Generator g1 = new SineWaveGenerator(200);
         Generator g2 = new SineWaveGenerator(201);
 
-        ArrayList<Generator> generators = new ArrayList<Generator>();
+        ArrayList<Generator> generators = new ArrayList<>();
         generators.add(g1);
         generators.add(g2);
         MultiGenerator mg = new MultiGenerator(generators);
