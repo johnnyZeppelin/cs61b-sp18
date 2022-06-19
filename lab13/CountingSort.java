@@ -1,8 +1,10 @@
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 /**
  * Class with 2 ways of doing Counting sort, one naive way and one "better" way
  *
  * @author Akhil Batra, Alexander Hwang
- *
  **/
 public class CountingSort {
     /**
@@ -67,6 +69,38 @@ public class CountingSort {
      */
     public static int[] betterCountingSort(int[] arr) {
         // TODO make counting sort work with arrays containing negative numbers.
-        return null;
+        // Get min and max
+        if (arr.length < 2) return arr;
+        int min = arr[0], max = min;
+        for (int i : arr) {
+            if (i < min) min = i;
+            if (i > max) max = i;
+        }
+        // Set the offset
+        int[] toSort = new int[arr.length];
+        for (int i = 0; i < toSort.length; ++i) {
+            toSort[i] = arr[i] - min;
+        }
+        max -= min;
+        // Count each kind of elements
+        int[] starts = new int[max + 1];
+        for (int i = 0; i < starts.length; ++i) starts[i] = 0;
+        for (int i : toSort) {
+            ++starts[i];
+        }
+        // Set start positions
+        for (int i = 0; i < starts.length - 1; ++i) {
+            starts[i + 1] += starts[i];
+        }
+        // Sent back to the toSort
+        for (int i = 0; i < starts[0]; ++i) {
+            toSort[i] = min;
+        }
+        for (int i = 0; i < max; ++i) {
+            for (int j = starts[i]; j < starts[i + 1]; ++j) {
+                toSort[j] = i + 1 + min;
+            }
+        }
+        return toSort;
     }
 }
